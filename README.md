@@ -178,7 +178,7 @@ Additive adjustments apply for:
 Probability constraints:
 
 - Floor: 0.10  
-- Ceiling: 0.50  
+- Ceiling: 0.60  
 
 Full model specification:
 
