@@ -165,6 +165,11 @@ No retroactive optimization.
 
 ---
 
+## License
+
+No license is granted for this repository at this time.  
+All rights reserved.
+
 
 ## Contact
 
