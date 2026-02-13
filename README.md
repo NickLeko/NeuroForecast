@@ -42,9 +42,17 @@ This repository intentionally showcases:
 - Deterministic evaluation via Brier scoring  
 - Transparent error visibility  
 
-It functions as a public research artifact and governance-first modeling system.
+## Status & Scope
 
----
+- Research / learning mode  
+- N = 23 predictions (10 resolved, 13 active)  
+- Not statistically validated  
+- Not investment advice  
+- Not regulatory decision support  
+
+This system demonstrates probabilistic reasoning discipline and governance-first AI design.  
+Statistical calibration assessment requires 50+ outcomes minimum.
+
 
 ## Design Philosophy & Governance
 
