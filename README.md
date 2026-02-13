@@ -136,7 +136,7 @@ Safety signals are treated as failures because development cannot proceed.
 
 ---
 
-## Current Scope (v1.0)
+## Current Version (v1.0)
 
 Focus area:
 
