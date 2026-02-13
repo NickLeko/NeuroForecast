@@ -7,7 +7,7 @@ It is immutable per version. Changes require a version bump and a CALIBRATION_LO
 Model outputs P(success) as a decimal in [0,1], with caps.
 
 - Floor: 0.10
-- Ceiling: 0.50
+- Ceiling: 0.60
 
 ## 2) Baselines
 Baseline depends on phase + archetype.
