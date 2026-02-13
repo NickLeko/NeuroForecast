@@ -64,6 +64,24 @@ Predictions are stored in:
 
 This enforces auditability and eliminates hindsight bias.
 
+
+---
+
+## Initial Calibration Validation
+
+Before prospective locking began, the model was stress-tested using a historical backfill set of completed trials.
+
+- 10+ completed Phase 2/3 trials evaluated
+- Predictions assigned using model rules
+- Outcomes scored using Brier metric
+- No retroactive edits permitted
+
+This validation phase surfaced systematic underestimation of Phase 3 symptomatic programs, leading to mechanism-specific baseline separation.
+
+Full details available in:
+
+docs/CALIBRATION_SUMMARY.md
+
 ---
 
 ### 2. Explicit Model Versioning
