@@ -7,6 +7,8 @@ It is designed as a governance-first decision-support prototype for high-uncerta
 
 The system prioritizes calibration discipline, explicit assumptions, version control, and outcome accountability over narrative confidence or model complexity.
 
+The current implementation uses mechanism-stratified base rates, additive structural adjustments, explicit probability caps, and Brier score evaluation.
+
 ---
 
 ## Problem
