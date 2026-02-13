@@ -88,7 +88,7 @@ This validation phase surfaced systematic underestimation of Phase 3 symptomatic
 
 Full details available in:
 
-docs/CALIBRATION_SUMMARY.md
+CALIBRATION_SUMMARY.md
 
 ---
 
