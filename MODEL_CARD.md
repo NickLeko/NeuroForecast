@@ -101,7 +101,7 @@ Low base rate reflecting high attrition.
 ### Phase 3 Baselines (Mechanism-Specific)
 
 - Tier 3 Dopaminergic: 55%
-- Non-Dopaminergic Symptomatic: 30–35%
+- Non-Dopaminergic Symptomatic: 30%
 - Disease-Modifying: 20%
 
 These baselines are empirical within the current dataset and version-controlled.
