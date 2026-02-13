@@ -1,177 +1,206 @@
-# NeuroForecast
+# NeuroForecast  
+## A Governed Probabilistic Forecasting System for Parkinson’s Clinical Trials
 
-A transparent forecasting and calibration framework for Parkinson’s disease clinical trials.
+NeuroForecast is a version-controlled probabilistic forecasting system for Phase 2 and Phase 3 Parkinson’s Disease trials.
 
----
+It is designed as a governance-first decision-support prototype for high-uncertainty healthcare environments.
 
-## Overview
-
-NeuroForecast is a structured probabilistic engine that assigns and tracks success probabilities for Phase 2 and Phase 3 Parkinson’s disease (PD) trials.
-
-The goal is not narrative commentary.
-
-The goal is calibration.
-
-Every included trial receives:
-- A pre-locked probability of success
-- A clearly defined mechanism classification
-- Explicit weighting logic
-- A binary outcome (success/failure)
-- A Brier score
-
-Predictions are immutable once locked.
+The system emphasizes calibration discipline, transparent assumptions, and outcome accountability.
 
 ---
 
-## Why This Exists
+## Problem
 
-Biotech discourse is dominated by:
+Clinical trials operate under extreme uncertainty.
 
-- Post-hoc rationalization
-- Mechanism storytelling
-- Selective memory of failures
-- Overfitting to small sample anecdotes
+Yet most decision systems — whether clinical, financial, or AI-driven — prioritize confidence, narrative, or model complexity over calibration and governance.
 
-Very few public systems:
-- Explicitly quantify probability
-- Lock predictions before outcomes
-- Track calibration over time
-- Separate symptomatic vs disease-modifying risk
-- Incorporate safety-driven failures correctly
+In healthcare AI, poor calibration is not just a modeling issue — it is a safety issue.
 
-NeuroForecast is designed to do exactly that.
+NeuroForecast explores how to design a structured, versioned forecasting system where:
+
+- Probabilities are locked and immutable
+- Assumptions are explicitly defined
+- Outcomes are objectively scored
+- Model updates are governed and auditable
 
 ---
 
-## Scope Rules (v6.0)
+## What This Project Demonstrates
 
-Trials are included if:
+This repository is intentionally structured to showcase:
 
-- Phase 2, Phase 2/3, or Phase 3
-- Randomized and controlled
-- Clinical efficacy primary endpoint
-- Enrollment ≥ 30
-- Status:
-  - Completed
-  - Terminated for safety
-  - Terminated for futility
+- Probabilistic reasoning under uncertainty  
+- Healthcare domain modeling  
+- Explicit assumption management  
+- Version-controlled model governance  
+- Deterministic evaluation via Brier scoring  
+- Transparent error visibility  
 
-Trials terminated for operational, funding, or enrollment issues are excluded.
-
-Safety terminations are counted as failures.
+It functions as a public research artifact and a governance-first modeling system.
 
 ---
 
-## Baseline Structure
+## System Design Principles
+
+### 1. Immutable Prediction Locking
+
+Once a probability is assigned to a trial, it is never edited.
+
+No retroactive adjustments.  
+No silent revisions.
+
+Predictions are stored in:
+
+data/locked_predictions.csv
+
+This enforces auditability and prevents hindsight bias.
+
+---
+
+### 2. Explicit Model Versioning
+
+All baselines and adjustment rules are defined in:
+
+model/WEIGHTS.md  
+model/VERSION.md  
+
+Any structural change requires:
+
+- A version bump  
+- A calibration log entry  
+- A traceable Git commit  
+
+This mirrors model governance standards in healthcare AI systems.
+
+---
+
+### 3. Deterministic Evaluation
+
+Performance is measured using the Brier Score:
+
+Brier = (p_locked − outcome)^2
+
+Lower scores indicate better calibration.
+
+Scoring is deterministic and reproducible via:
+
+scripts/compute_brier.py
+
+---
+
+### 4. Safety-Aware Outcome Classification
+
+- Success = Primary endpoint met AND development continued  
+- Failure = Primary endpoint not met OR safety/futility termination  
+
+Safety signals are explicitly treated as failures because development cannot proceed.
+
+---
+
+## Current Scope (v1.0)
+
+Focus:
+
+- Parkinson’s Disease  
+- Phase 2 and Phase 3 interventional trials  
+- Clinical efficacy primary endpoints  
+- Enrollment ≥ 30  
+
+Mechanism classes:
+
+- Dopaminergic symptomatic  
+- Non-dopaminergic symptomatic  
+- Disease-modifying  
+
+---
+
+## Model Structure (v1.0)
 
 ### Phase 2 Baseline
-Low base rate reflecting historical attrition.
+0.15
 
-### Phase 3 Baseline (Mechanism-Stratified)
+### Phase 3 Baselines
+- Tier 3 dopaminergic symptomatic: 0.55  
+- Non-dopaminergic symptomatic: 0.30  
+- Disease-modifying: 0.20  
 
-- Tier 3 Dopaminergic (class-proven symptomatic): High baseline
-- Non-Dopaminergic Symptomatic: Moderate baseline
-- Disease-Modifying: Lower baseline
+Additive adjustments apply for:
 
-Adjustments applied for:
-- Sample size
-- Endpoint fragility
-- Operational risk
-- Biological plausibility tier
+- Sample size  
+- Evidence tier  
+- Endpoint fragility  
+- Operational risk  
+- Mechanism-specific penalties  
 
-Weights are versioned and documented in the Model Card.
+Probability caps:
+- Floor: 0.10  
+- Ceiling: 0.50  
 
----
+Full specification available in:
 
-## Definitions
-
-### Success
-Primary efficacy endpoint met with statistical significance.
-
-### Failure
-- Primary endpoint not met
-- Terminated for futility
-- Terminated for safety
-
-### Brier Score
-\[
-(p - o)^2
-\]
-
-Where:
-- p = predicted probability
-- o = binary outcome (1 or 0)
-
-Lower is better. Calibration matters more than accuracy on any single trial.
+model/WEIGHTS.md
 
 ---
 
-## Current Dataset Snapshot
+## Repository Structure
 
-- Total trials evaluated: [update dynamically]
-- Overall observed success rate: [update]
-- Phase 3 Tier 3 empirical rate: [update]
-- Phase 3 Disease-Modifying empirical rate: [update]
+data/  
+- locked_predictions.csv  
+- outcomes.csv  
+- outcomes_scored.csv  
+- monitor_log.csv  
 
-All raw data available in `/data/locked_predictions.csv`.
+model/  
+- WEIGHTS.md  
+- VERSION.md  
+- CALIBRATION_LOG.md  
+
+scripts/  
+- compute_brier.py  
+
+docs/  
+- GLOSSARY.md  
+- PD_CALIBRATION_SPEC_v1.0.pdf  
 
 ---
 
 ## What This Is Not
 
-- Not investment advice
-- Not a trading model
-- Not a narrative biotech blog
-- Not mechanism hype
+- Not financial advice  
+- Not an optimized trading system  
+- Not a machine learning black box  
+- Not curve-fitted historical modeling  
+- Not narrative-driven biotech speculation  
 
-It is a structured forecasting log.
-
----
-
-## Limitations
-
-- Small sample size (current N < 100)
-- Parkinson’s-specific (for now)
-- Does not model subgroup enrichment strategies explicitly
-- Does not incorporate adaptive trial design complexity
-- Does not price in commercial viability
-
-This is strictly a clinical efficacy probability engine.
+This is a structured calibration system.
 
 ---
 
-## Future Expansion
+## Relevance to Healthcare AI
 
-Potential extensions:
+Many healthcare AI failures stem from:
 
-- Alzheimer’s disease
-- ALS
-- Platform trial modeling
-- Time-to-readout hazard modeling
-- Bayesian updating framework
+- Poor calibration  
+- Unclear versioning  
+- Silent assumption drift  
+- Lack of outcome accountability  
 
-Expansion will only occur after stable calibration in Parkinson’s.
+NeuroForecast intentionally embeds:
 
----
+- Transparent assumptions  
+- Explicit version control  
+- Deterministic evaluation  
+- Governance before optimization  
 
-## Transparency Policy
-
-- Predictions are locked before outcome review.
-- Weights are versioned.
-- Historical predictions are never edited.
-- Recalibration requires documented version bump.
-
-No retroactive optimization.
+These principles are directly transferable to clinical decision support and AI model oversight environments.
 
 ---
 
-## License
+## Status
 
-No license is granted for this repository at this time.  
-All rights reserved.
+Active research mode.  
+Prospective prediction locking ongoing.  
+Model version: v1.0  
 
-
-## Contact
-
-This project is maintained as a research artifact.
-Discussion and critique welcome via Issues.
+This repository prioritizes disciplined iteration over rapid expansion.
