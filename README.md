@@ -188,23 +188,25 @@ Full model specification:
 
 ## Repository Structure
 
-data/
-- locked_predictions.csv  
-- outcomes.csv  
-- outcomes_scored.csv  
-- monitor_log.csv  
-
-model/
-- WEIGHTS.md  
-- VERSION.md  
-- CALIBRATION_LOG.md  
-
-scripts/
-- compute_brier.py  
-
-docs/
-- GLOSSARY.md  
-- PD_CALIBRATION_SPEC_v1.0.pdf  
+Directory structure:
+└── nickleko-neuroforecast/
+    ├── README.md
+    ├── CALIBRATION_SUMARRY.md
+    ├── CONTRIBUTING.md
+    ├── MODEL_CARD.md
+    ├── Data/
+    │   ├── Locked_Predictions.csv
+    │   ├── monitor_log.csv
+    │   └── outcomes.csv
+    ├── docs/
+    │   └── GLOSSARY.md
+    ├── model/
+    │   ├── CALIBRATION_LOG.md
+    │   ├── VERSION.md
+    │   └── WEIGHTS.md
+    └── scripts/
+        ├── README.md
+        └── compute_brier.py
 
 ---
 
